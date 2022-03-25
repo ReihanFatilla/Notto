@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Notto</string>
+    <string name="txt_temp_title">HomeWork</string>
+    <string name="txt_temp_date">04 Dec 2021, 01:45 PM</string>
+    <string name="txt_temp_desc">My Dream Gaming Set up : Processor: intel core i5 10400f or intel core i5 11400f VGA: MSI Nvidia RTX 2060 or Nvidia GTX 1650ti PSU: Antec vp 500w 80+ \n\n Bronze How Much Would They Cost:\nIts Depends on how you choose the hardware parts and what type of games you want to play. If you are a person who is a beginner in this you need not to make an expensive setup you can build at the cost of 40–60k. \nIf you are a person who plays high-end games and do not stream and only play for fun you can go for 50–80k. Its not like that you cannot build 1 lakh build or 2lakh build you can but i think there is no need of it…. If you are playing high-end games and you stream it at the same time you can go for 1 lakh and above build…</string>
+    <string name="txt_hi_user">Hi, Reihan</string>
+</resources>
