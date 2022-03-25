@@ -18,9 +18,11 @@
 
         <ImageView
             android:id="@+id/ic_note"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/ic_text"
+            app:layout_constraintTop_toTopOf="@id/tv_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_date"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -44,9 +46,10 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
+            android:layout_marginTop="-3dp"
             android:text="@string/txt_temp_date"
             android:textColor="@color/gray"
-            android:textSize="6sp"
+            android:textSize="7sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />

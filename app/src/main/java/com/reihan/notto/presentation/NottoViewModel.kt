@@ -35,6 +35,10 @@ class NottoViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun searchNottoByQuery(query: String) : LiveData<List<Notto>> {
+        return nottoDAO.searchNottoByQuery(query)
+    }
+
     fun deleteAllNotto(){
         viewModelScope.launch(Dispatchers.IO){
             repository.deleteAllNottoRepo()

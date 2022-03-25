@@ -19,6 +19,10 @@ class NottoRepository(private val dao: NottoDAO) {
         dao.deleteNotto(notto)
     }
 
+    fun searchNottoByQueryRepo(query: String) : LiveData<List<Notto>> {
+        return dao.searchNottoByQuery(query)
+    }
+
     suspend fun deleteAllNottoRepo(){
         dao.deleteAllNotto()
     }

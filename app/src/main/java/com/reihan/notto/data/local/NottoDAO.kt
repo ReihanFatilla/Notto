@@ -15,6 +15,9 @@ interface NottoDAO {
     @Delete
     suspend fun deleteNotto(notto: Notto)
 
+    @Query("SELECT * FROM notto_data_table WHERE desc_notto || title_notto LIKE :querySearch")
+    fun searchNottoByQuery(querySearch: String) : LiveData<List<Notto>>
+
     @Query("DELETE FROM notto_data_table")
     suspend fun deleteAllNotto()
 

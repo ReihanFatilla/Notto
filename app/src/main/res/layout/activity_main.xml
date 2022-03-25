@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="24dp"
+        android:paddingHorizontal="19dp"
         android:paddingVertical="5dp"
         android:background="@color/bg_app">
 
@@ -22,7 +22,7 @@
             android:src="@drawable/ic_add"
             android:backgroundTint="@color/PrimaryColor"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="720dp"
+            android:layout_marginTop="640dp"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="@string/txt_hi_user"
             android:textSize="20sp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/poppins_bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -50,9 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             app:layout_constraintTop_toBottomOf="@id/tv_hi_user"
-            android:background="@color/bg_sv"
+            android:background="@drawable/bg_searchview"
             android:iconifiedByDefault="false"
             android:queryHint="Search Here"
+            app:defaultQueryHint="Search Here"
             />
 
         <androidx.recyclerview.widget.RecyclerView

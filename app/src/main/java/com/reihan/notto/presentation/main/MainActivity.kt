@@ -18,7 +18,7 @@ import com.reihan.notto.presentation.NottoViewModel
 import com.reihan.notto.presentation.adapter.NottoAdapter
 import com.reihan.notto.presentation.detail.DetailActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.OnQueryTextListener {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding as ActivityMainBinding
@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var nottoViewModel: NottoViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +41,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        binding.svNote.setOnQueryTextListener(this)
+
         binding.apply {
             fabAdd.setOnClickListener {
                 val intent = Intent(applicationContext, DetailActivity::class.java)
@@ -74,5 +75,22 @@ class MainActivity : AppCompatActivity() {
 
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        query?.let { searchNottoByQuery(it) }
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        newText?.let { searchNottoByQuery(it) }
+        return true
+    }
+
+    private fun searchNottoByQuery(query: String) {
+        val querySearch = "%$query%"
+        nottoViewModel.searchNottoByQuery(querySearch).observe(this) {
+            nottoAdapter?.setData(it)
+        }
     }
 }
