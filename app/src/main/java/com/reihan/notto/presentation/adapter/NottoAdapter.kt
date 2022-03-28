@@ -29,6 +29,7 @@ class NottoAdapter: RecyclerView.Adapter<NottoAdapter.MyViewHolder>() {
             tvTitle.text = notto.title
             tvDesc.text = notto.desc
             tvDate.text = notto.date
+            imgNotto.setImageBitmap(notto.image)
         }
 
         holder.itemView.setOnClickListener {
@@ -37,6 +38,7 @@ class NottoAdapter: RecyclerView.Adapter<NottoAdapter.MyViewHolder>() {
             intent.putExtra(DetailActivity.EXTRA_DESC, notto.desc)
             intent.putExtra(DetailActivity.EXTRA_DATE, notto.date)
             intent.putExtra(DetailActivity.EXTRA_ORIGIN, "Update-Method")
+            intent.putExtra(DetailActivity.EXTRA_IMAGE, notto.image)
             intent.putExtra(DetailActivity.EXTRA_CURRENT_ID, notto.id.toString())
             holder.itemView.context.startActivity(intent)
         }

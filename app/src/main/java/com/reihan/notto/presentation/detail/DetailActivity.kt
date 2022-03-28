@@ -1,7 +1,10 @@
 package com.reihan.notto.presentation.detail
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -21,7 +24,6 @@ class DetailActivity : AppCompatActivity() {
     private val binding get() = _binding as ActivityDetailBinding
 
     private val detailViewModel: NottoViewModel by viewModels()
-    private var nottoAdapter: NottoAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,15 +37,19 @@ class DetailActivity : AppCompatActivity() {
         val currentTitle: String? = intent.getStringExtra(EXTRA_TITLE)
         val currentDesc: String? = intent.getStringExtra(EXTRA_DESC)
         val intentOrigin: String? = intent.getStringExtra(EXTRA_ORIGIN)
-
+        val currentImage = intent.getSerializableExtra(EXTRA_IMAGE) as Bitmap
 
         binding.apply{
             edtTitle.setText(currentTitle)
             edtDesc.setText(currentDesc)
             tvDate.text = intent.getStringExtra(EXTRA_DATE)
+            imgNotto.setImageBitmap(currentImage)
 
             btnBack.setOnClickListener{
                 finish()
+            }
+            fabAddImage.setOnClickListener{
+                addImage()
             }
             btnConfirm.setOnClickListener{
                 if(intentOrigin == "Add-Method"){
@@ -62,13 +68,15 @@ class DetailActivity : AppCompatActivity() {
             val title = edtTitle.text.toString()
             val desc = edtDesc.text.toString()
             val date = tvDate.text.toString()
+            val image  = (imgNotto.drawable as BitmapDrawable).bitmap
 
 
             val updatedData = Notto(
                 currentNottoId,
                 title,
                 date,
-                desc
+                desc,
+                image
             )
             detailViewModel.updateNotto(updatedData)
             Toast.makeText(this@DetailActivity, "Notto Successfully Updated!", Toast.LENGTH_SHORT).show()
@@ -81,12 +89,14 @@ class DetailActivity : AppCompatActivity() {
             val title = edtTitle.text.toString()
             val desc = edtDesc.text.toString()
             val date = tvDate.text.toString()
+            val image  = (imgNotto.drawable as BitmapDrawable).bitmap
 
             val insertedData = Notto(
                 0,
                 title,
                 date,
-                desc
+                desc,
+                image
             )
             detailViewModel.insertNotto(insertedData)
             Toast.makeText(this@DetailActivity, "Notto Successfully Added!", Toast.LENGTH_SHORT).show()
@@ -95,7 +105,22 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun addImage() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
+            binding.imgNotto.setImageURI(data?.data)
+        }
+    }
+
     companion object{
+        const val EXTRA_IMAGE = ""
+        const val REQUEST_CODE = 100
         const val EXTRA_CURRENT_ID = "1"
         const val EXTRA_TITLE = "Title"
         const val EXTRA_DESC = "Desc"

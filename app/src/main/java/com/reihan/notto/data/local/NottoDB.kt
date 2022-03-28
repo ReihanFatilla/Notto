@@ -1,11 +1,11 @@
 package com.reihan.notto.data.local
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.reihan.notto.data.Converter
 
 @Database(entities = [Notto::class], version = 2)
+@TypeConverters(Converter::class)
 abstract class NottoDB: RoomDatabase() {
     abstract val nottoDao: NottoDAO
 

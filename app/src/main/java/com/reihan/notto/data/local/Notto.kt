@@ -1,9 +1,10 @@
 package com.reihan.notto.data.local
 
-import androidx.annotation.ColorInt
+import android.graphics.Bitmap
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "notto_data_table")
 data class Notto(
@@ -16,4 +17,6 @@ data class Notto(
     val date: String,
     @ColumnInfo(name = "desc_notto")
     val desc: String,
-)
+    @ColumnInfo(name = "image_notto")
+    val image: Bitmap
+) : Serializable
