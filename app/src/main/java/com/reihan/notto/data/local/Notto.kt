@@ -1,12 +1,15 @@
 package com.reihan.notto.data.local
 
 import android.graphics.Bitmap
+import android.os.Parcelable
+import androidx.annotation.Nullable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "notto_data_table")
+@Parcelize
 data class Notto(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_notto")
@@ -17,6 +20,5 @@ data class Notto(
     val date: String,
     @ColumnInfo(name = "desc_notto")
     val desc: String,
-    @ColumnInfo(name = "image_notto")
-    val image: Bitmap
-) : Serializable
+    val image: String
+) : Parcelable

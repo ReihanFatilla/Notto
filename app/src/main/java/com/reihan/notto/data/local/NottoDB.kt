@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.*
 import com.reihan.notto.data.Converter
 
-@Database(entities = [Notto::class], version = 2)
+@Database(entities = [Notto::class], version = 3)
 @TypeConverters(Converter::class)
 abstract class NottoDB: RoomDatabase() {
     abstract val nottoDao: NottoDAO

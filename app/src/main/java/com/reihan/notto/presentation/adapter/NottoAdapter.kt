@@ -1,16 +1,23 @@
 package com.reihan.notto.presentation.adapter
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.os.Parcelable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.reihan.notto.R
 import com.reihan.notto.data.local.Notto
 import com.reihan.notto.databinding.ItemNoteBinding
 import com.reihan.notto.helper.NottoDiffUtil
+import com.reihan.notto.helper.fromBitmap
 import com.reihan.notto.presentation.detail.DetailActivity
+import java.io.ByteArrayOutputStream
+import java.io.Serializable
 
 class NottoAdapter: RecyclerView.Adapter<NottoAdapter.MyViewHolder>() {
 
@@ -29,10 +36,13 @@ class NottoAdapter: RecyclerView.Adapter<NottoAdapter.MyViewHolder>() {
             tvTitle.text = notto.title
             tvDesc.text = notto.desc
             tvDate.text = notto.date
-            imgNotto.setImageBitmap(notto.image)
+            Glide.with(imgNotto.context)
+                .load(notto.image)
+                .into(imgNotto)
         }
 
         holder.itemView.setOnClickListener {
+
             val intent = Intent(it.context, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_TITLE, notto.title)
             intent.putExtra(DetailActivity.EXTRA_DESC, notto.desc)

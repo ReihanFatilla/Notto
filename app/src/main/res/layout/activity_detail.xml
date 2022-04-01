@@ -44,7 +44,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/poppins_semibold"
         android:maxLines="1"
-        android:text="@string/txt_temp_title"
+        tools:text="@string/txt_temp_title"
         android:theme="@style/MyEditText"
         android:textColor="@color/black"
         android:textSize="19sp"
@@ -77,7 +77,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_date">
 
         <ImageView
-            android:id="@+id/img_notto"
+            android:id="@+id/img_notto_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:src="@tools:sample/avatars"
@@ -97,7 +97,7 @@
         android:ellipsize="end"
         android:fontFamily="@font/poppins_medium"
         android:maxLines="13"
-        android:text="@string/txt_temp_desc"
+        tools:text="@string/txt_temp_desc"
         android:textColor="@color/light_gray"
         android:textSize="13sp"
         android:textAlignment="textStart"
