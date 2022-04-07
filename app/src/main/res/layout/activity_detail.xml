@@ -5,113 +5,128 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.detail.DetailActivity"
-    android:background="@color/bg_app"
-    android:paddingHorizontal="24dp">
+    android:background="@color/bg_app">
 
-    <ImageView
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_back"
-        android:layout_marginTop="42dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <ImageView
-        android:id="@+id/btn_confirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_checklist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btn_back" />
-
-    <ImageView
-        android:id="@+id/ic_note"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/ic_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_back"
-        android:layout_marginTop="26dp"
-        />
-
-    <EditText
-        android:hint="Title"
-        android:id="@+id/edt_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/poppins_semibold"
-        android:maxLines="1"
-        tools:text="@string/txt_temp_title"
-        android:theme="@style/MyEditText"
-        android:textColor="@color/black"
-        android:textSize="19sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ic_note"
-        app:layout_constraintTop_toTopOf="@id/ic_note"
-        app:layout_constraintBottom_toBottomOf="@id/ic_note"/>
-
-    <TextClock
-        android:id="@+id/tv_date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:format24Hour="EEEE, d MMM yyyy | HH:mm"
-        android:maxLines="1"
-        android:text="@string/txt_temp_date"
-        android:layout_marginStart="4dp"
-        android:textColor="@color/gray"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/edt_title"
-        app:layout_constraintTop_toBottomOf="@id/edt_title" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_marginTop="16dp"
-        android:id="@+id/cv_img"
+    <FrameLayout
         android:layout_width="match_parent"
-        app:cardCornerRadius="10dp"
-        android:layout_height="210dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_date">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/img_notto_detail"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:src="@tools:sample/avatars"
-            android:scaleType="centerCrop"
-            />
+            android:paddingHorizontal="24dp">
 
-    </com.google.android.material.card.MaterialCardView>
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:layout_marginTop="42dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <ImageView
+                android:id="@+id/btn_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_checklist"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/btn_back" />
+
+            <ImageView
+                android:id="@+id/ic_note"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_back"
+                android:layout_marginTop="26dp"
+                />
+
+            <EditText
+                android:hint="Title"
+                android:id="@+id/edt_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_semibold"
+                android:maxLines="1"
+                tools:text="@string/txt_temp_title"
+                android:theme="@style/MyEditText"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ic_note"
+                app:layout_constraintTop_toTopOf="@id/ic_note"
+                app:layout_constraintBottom_toBottomOf="@id/ic_note"/>
+
+            <TextClock
+                android:id="@+id/tv_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:format24Hour="EEEE, d MMM yyyy | HH:mm"
+                android:maxLines="1"
+                android:text="@string/txt_temp_date"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/gray"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/edt_title"
+                app:layout_constraintTop_toBottomOf="@id/edt_title" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_marginTop="16dp"
+                android:id="@+id/cv_img"
+                android:layout_width="match_parent"
+                app:cardCornerRadius="10dp"
+                android:layout_height="210dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_date">
+
+                <ImageView
+                    android:id="@+id/img_notto_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:src="@tools:sample/avatars"
+                    />
+
+            </com.google.android.material.card.MaterialCardView>
 
 
-    <EditText
-        android:hint="Your Notto Goes Here"
-        android:id="@+id/edt_desc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:theme="@style/MyEditText"
-        android:ellipsize="end"
-        android:fontFamily="@font/poppins_medium"
-        android:maxLines="13"
-        tools:text="@string/txt_temp_desc"
-        android:textColor="@color/light_gray"
-        android:textSize="13sp"
-        android:textAlignment="textStart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cv_img" />
+            <EditText
+                android:hint="Your Notto Goes Here"
+                android:id="@+id/edt_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:theme="@style/MyEditText"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="13"
+                tools:text="@string/txt_temp_desc"
+                android:textColor="@color/light_gray"
+                android:textSize="13sp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv_img" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_image"
-        android:backgroundTint="@color/PrimaryColor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_image"
+            android:layout_marginEnd="24dp"
+            android:backgroundTint="@color/PrimaryColor"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="40dp"/>
+
+    </FrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

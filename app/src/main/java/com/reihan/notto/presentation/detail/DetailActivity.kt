@@ -1,17 +1,21 @@
 package com.reihan.notto.presentation.detail
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.constraintlayout.widget.ConstraintSet.*
 import com.bumptech.glide.Glide
+import com.reihan.notto.R
 import com.reihan.notto.data.local.Notto
 import com.reihan.notto.databinding.ActivityDetailBinding
+import com.reihan.notto.helper.checkIfImageIsNull
 import com.reihan.notto.presentation.NottoViewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -28,8 +32,15 @@ class DetailActivity : AppCompatActivity() {
         _binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        checkIfImgIsNull()
         initView()
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        checkIfImgIsNull()
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -52,12 +63,15 @@ class DetailActivity : AppCompatActivity() {
                 edtTitle.setText(currentTitle)
                 edtDesc.setText(currentDesc)
                 tvDate.text = intent.getStringExtra(EXTRA_DATE)
+
+                Glide.with(this@DetailActivity)
+                    .load(Uri.parse(currentImage))
+                    .centerCrop()
+                    .into(findViewById(R.id.img_notto_detail))
 //                grantUriPermission()
 //                imgNottoDetail.setImageURI(Uri.parse(currentImage))
+//
 
-                Glide.with(imgNottoDetail.context)
-                    .load(currentImage)
-                    .into(imgNottoDetail)
                 Log.i("IntentImage", "Successfully Intent Image $currentImage")
             }
 
@@ -77,6 +91,16 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun checkIfImgIsNull() {
+        val intentOrigin: String? = intent.getStringExtra(EXTRA_ORIGIN)
+        val currentImage: String? = intent.getStringExtra(EXTRA_IMAGE)
+        if(intentOrigin == "Update-Method"){
+            checkIfImageIsNull(binding, currentImage!!)
+        } else {
+            checkIfImageIsNull(binding, imageUri.toString())
+        }
     }
 
     private fun updateNotto() {
