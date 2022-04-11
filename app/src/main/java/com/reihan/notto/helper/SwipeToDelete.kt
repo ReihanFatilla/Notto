@@ -7,7 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-abstract class SwipeToDelete : ItemTouchHelper.SimpleCallback(1, ItemTouchHelper.RIGHT){
+abstract class SwipeToDelete : ItemTouchHelper.SimpleCallback(1, ItemTouchHelper.LEFT){
     override fun onMove(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder,

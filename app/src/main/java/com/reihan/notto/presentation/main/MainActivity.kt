@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.reihan.notto.R
+import com.reihan.notto.data.local.Notto
 import com.reihan.notto.databinding.ActivityMainBinding
 import com.reihan.notto.helper.SwipeToDelete
 import com.reihan.notto.presentation.NottoViewModel
@@ -57,8 +58,8 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
             nottoAdapter?.setData(it)
         }
         binding.rvNotto.apply {
-            layoutManager = StaggeredGridLayoutManager(2, 1)
             adapter = nottoAdapter
+            layoutManager = StaggeredGridLayoutManager(2, 1)
         }
         swipeToDelete(binding.rvNotto)
     }
@@ -67,8 +68,8 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
         val swipeToDeleteCallback = object : SwipeToDelete() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val deletedItem = nottoAdapter?.listNotto?.get(viewHolder.adapterPosition)
-                deletedItem?.let { nottoViewModel.deleteNotto(it) }
-                nottoAdapter?.notifyItemRemoved(viewHolder.adapterPosition)
+                nottoViewModel.deleteNotto(deletedItem!!)
+//                nottoAdapter?.notifyItemRemoved(viewHolder.adapterPosition)
                 Toast.makeText(applicationContext, "Successfully Deleting Note", Toast.LENGTH_SHORT).show()
             }
         }

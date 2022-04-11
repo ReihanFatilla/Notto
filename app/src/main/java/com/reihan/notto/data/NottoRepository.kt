@@ -5,6 +5,7 @@ import com.reihan.notto.data.local.Notto
 import com.reihan.notto.data.local.NottoDAO
 
 class NottoRepository(private val dao: NottoDAO) {
+
     val getDataNottoRepo: LiveData<List<Notto>> = dao.getAllNotto()
 
     suspend fun insertNottoRepo(notto: Notto){

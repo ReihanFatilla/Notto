@@ -21,6 +21,7 @@ class NottoViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertNottoRepo(notto)
         }
+
     }
 
     fun deleteNotto(notto: Notto){
