@@ -67,8 +67,7 @@ class MainActivity : AppCompatActivity(), androidx.appcompat.widget.SearchView.O
         val swipeToDeleteCallback = object : SwipeToDelete() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val deletedItem = nottoAdapter?.listNotto?.get(viewHolder.adapterPosition)
-                deletedItem?.let { nottoViewModel.deleteNotto(it) }
-                nottoAdapter?.notifyItemRemoved(viewHolder.adapterPosition)
+                nottoViewModel.deleteNotto(deletedItem!!)
                 Toast.makeText(applicationContext, "Successfully Deleting Note", Toast.LENGTH_SHORT).show()
             }
         }

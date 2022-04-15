@@ -21,7 +21,6 @@ class DetailActivity : AppCompatActivity() {
     private val binding get() = _binding as ActivityDetailBinding
 
     private val detailViewModel: NottoViewModel by viewModels()
-    private var nottoAdapter: NottoAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,40 +57,60 @@ class DetailActivity : AppCompatActivity() {
 
     private fun updateNotto() {
         binding.apply{
-            val currentNottoId: Int = intent.getStringExtra(EXTRA_CURRENT_ID)!!.toInt()
-            val title = edtTitle.text.toString()
-            val desc = edtDesc.text.toString()
-            val date = tvDate.text.toString()
+            if(edtTitle.text.isEmpty() && edtDesc.text.isEmpty()){
+                edtDesc.error = "Please fill the field"
+                edtTitle.error = "Please fill this field"
+            } else if(edtDesc.text.isEmpty()){
+                edtDesc.error = "Please fill the field"
+            } else if(edtTitle.text.isEmpty()) {
+                edtTitle.error = "Please fill this field"
+            } else {
 
+                val currentNottoId: Int = intent.getStringExtra(EXTRA_CURRENT_ID)!!.toInt()
+                val title = edtTitle.text.toString()
+                val desc = edtDesc.text.toString()
+                val date = tvDate.text.toString()
 
-            val updatedData = Notto(
-                currentNottoId,
-                title,
-                date,
-                desc
-            )
-            detailViewModel.updateNotto(updatedData)
-            Toast.makeText(this@DetailActivity, "Notto Successfully Updated!", Toast.LENGTH_SHORT).show()
-            Log.i("updateNotto", "Successfully Updating Note with $updatedData")
-            finish()
+                val updatedData = Notto(
+                    currentNottoId,
+                    title,
+                    date,
+                    desc
+                )
+                detailViewModel.updateNotto(updatedData)
+                Toast.makeText(this@DetailActivity, "Notto Successfully Updated!", Toast.LENGTH_SHORT).show()
+                Log.i("updateNotto", "Successfully Updating Note with $updatedData")
+                finish()
+            }
         }
     }
     private fun insertNotto() {
         binding.apply{
-            val title = edtTitle.text.toString()
-            val desc = edtDesc.text.toString()
-            val date = tvDate.text.toString()
+            if(edtTitle.text.isEmpty() && edtDesc.text.isEmpty()){
+                edtDesc.error = "Please fill the field"
+                edtTitle.error = "Please fill this field"
+            } else if(edtDesc.text.isEmpty()){
+                edtDesc.error = "Please fill the field"
+            } else if(edtTitle.text.isEmpty()) {
+                edtTitle.error = "Please fill this field"
+            } else {
+                val title = edtTitle.text.toString()
+                val desc = edtDesc.text.toString()
+                val date = tvDate.text.toString()
 
-            val insertedData = Notto(
-                0,
-                title,
-                date,
-                desc
-            )
-            detailViewModel.insertNotto(insertedData)
-            Toast.makeText(this@DetailActivity, "Notto Successfully Added!", Toast.LENGTH_SHORT).show()
-            Log.i("InsertNotto", "Succesully adding note with $insertedData")
-            finish()
+                val insertedData = Notto(
+                    0,
+                    title,
+                    date,
+                    desc,
+                )
+
+                detailViewModel.insertNotto(insertedData)
+                Toast.makeText(this@DetailActivity, "Notto Successfully Added!", Toast.LENGTH_SHORT).show()
+                Log.i("InsertNotto", "Succesully adding note with $insertedData\n" )
+                finish()
+            }
+
         }
     }
 
